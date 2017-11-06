@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -13,14 +12,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="582.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="sample.Controller">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <LineChart fx:id="chart" animated="false" prefHeight="400.0" prefWidth="514.0">
+      <LineChart fx:id="chart" animated="false" legendVisible="false" prefHeight="400.0" prefWidth="731.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+           <NumberAxis side="BOTTOM" fx:id="xAxis" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+           <NumberAxis fx:id="yAxis" side="LEFT" />
         </yAxis>
       </LineChart>
       <VBox prefHeight="400.0" prefWidth="239.0">
@@ -30,17 +29,18 @@
                   <ToggleGroup fx:id="functions" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="gip" mnemonicParsing="false" text="1/x" toggleGroup="$functions" />
-            <RadioButton fx:id="log" mnemonicParsing="false" text="Log2(x)" toggleGroup="$functions" />
+            <RadioButton fx:id="sqr" mnemonicParsing="false" text="x^2" toggleGroup="$functions" />
+            <RadioButton fx:id="growingSin" mnemonicParsing="false" text="x*Sin(x)" toggleGroup="$functions" />
             <RadioButton fx:id="sqrt" mnemonicParsing="false" text="Sqrt(x)" toggleGroup="$functions" />
-            <TextField fx:id="y" prefHeight="26.0" prefWidth="234.0">
+            <Button fx:id="draw" mnemonicParsing="false" onAction="#drawGraphics" prefHeight="26.0" prefWidth="66.0" text="Draw" />
+            <TextField fx:id="input" prefHeight="26.0" prefWidth="234.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </TextField>
             <HBox prefHeight="135.0" prefWidth="154.0">
                <children>
-                  <Button id="Check" fx:id="check" mnemonicParsing="false" onAction="#doCheck" text="Check" />
+                  <Button id="Check" fx:id="check" mnemonicParsing="false" onAction="#doCheck" prefHeight="26.0" prefWidth="80.0" text="Check" />
                   <VBox prefHeight="128.0" prefWidth="100.0">
                      <children>
                         <Label fx:id="first" prefHeight="27.0" prefWidth="107.0" text="first" />
@@ -52,11 +52,11 @@
                   </VBox>
                </children>
             </HBox>
-            <CheckBox fx:id="graph1" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" text="Функция" />
-            <CheckBox fx:id="graph2" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" text="Интерполяция/5точек" />
-            <CheckBox fx:id="graph3" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" text="Интерполяция/10точек" />
-            <CheckBox fx:id="graph4" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" text="Сдвинутая точка" />
-            <CheckBox fx:id="graph5" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" text="Большой промежуток" />
+            <CheckBox fx:id="graph1" mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0" text="Функция" />
+            <CheckBox fx:id="graph2" mnemonicParsing="false" prefHeight="25.0" prefWidth="194.0" text="Интерполяция/5точек" />
+            <CheckBox fx:id="graph3" mnemonicParsing="false" prefHeight="27.0" prefWidth="198.0" text="Интерполяция/10точек" />
+            <CheckBox fx:id="graph4" mnemonicParsing="false" prefHeight="27.0" prefWidth="196.0" text="Сдвинутая точка" />
+            <CheckBox fx:id="graph5" mnemonicParsing="false" prefHeight="28.0" prefWidth="198.0" text="Большой промежуток" />
          </children>
          <HBox.margin>
             <Insets />
