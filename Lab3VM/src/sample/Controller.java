@@ -49,19 +49,15 @@ public class Controller {
     Function func;
     @FXML public void drawCos(){
         func = (double x)->cos(x);
-        draw();
     }
     @FXML public void drawPow2(){
         func = (double x)->pow(x,2);
-        draw();
     }
     @FXML public void drawGrowingSin(){
         func = (double x)->x*sin(x);
-        draw();
     }
     @FXML public void drawSqrt(){
         func= (double x) -> sqrt(x);
-        draw();
     }
     @FXML
     private NumberAxis xAxis = new NumberAxis();
@@ -71,11 +67,43 @@ public class Controller {
     private LineChart<Number, Number> chart = new LineChart<Number, Number>(xAxis,yAxis);
     @FXML
     public void doCheck(){
-        first.setText(input.getText());
-        second.setText(input.getText());
-        third.setText(input.getText());
-        forth.setText(input.getText());
-        fifth.setText(input.getText());
+        if(cos.isSelected()){
+            drawCos();
+        }else if(sqr.isSelected()){
+            drawPow2();
+        }else if(growingSin.isSelected()){
+            drawGrowingSin();
+        }else if(sqrt.isSelected()){
+            drawSqrt();
+        }else{
+            first.setText("Выберите функцию");
+            second.setText("Выберите функцию");
+            third.setText("Выберите функцию");
+            forth.setText("Выберите функцию");
+            fifth.setText("Выберите функцию");
+            return;
+        }
+        Interpolate inter = new Interpolate();
+        try{
+            first.setText(Double.toString(func.calculate(Double.parseDouble(input.getText()))));
+            double[] x = {0,PI/2,PI,PI*3/2,PI*2};
+            double[] y = {func.calculate(x[0]),func.calculate(x[1]),func.calculate(x[2]),func.calculate(x[3]),func.calculate(x[4])};
+            second.setText(Double.toString(inter.polinomValue(x.length-1,x,inter.computeCoef(x.length-1,x,y),Double.parseDouble(input.getText()))));
+            double[] x1 = {0,PI/4,PI/2,PI*3/4,PI,PI*5/4,PI*3/2,PI*7/4,PI*2};
+            double[] y1 = {func.calculate(x1[0]),func.calculate(x1[1]),func.calculate(x1[2]),func.calculate(x1[3]),func.calculate(x1[4]),func.calculate(x1[5]),func.calculate(x1[6]),func.calculate(x1[7]),func.calculate(x1[8])};
+            third.setText(Double.toString(inter.polinomValue(x1.length-1,x1,inter.computeCoef(x1.length-1,x1,y1),Double.parseDouble(input.getText()))));
+            y1[3]=0;
+            forth.setText(Double.toString(inter.polinomValue(x1.length-1,x1,inter.computeCoef(x1.length-1,x1,y1),Double.parseDouble(input.getText()))));
+            double[] x2 = {0,PI/2,PI,PI*3/2,PI*2,PI*5/2,PI*3,PI*7/2,PI*4};
+            double[] y2 = {func.calculate(x2[0]),func.calculate(x2[1]),func.calculate(x2[2]),func.calculate(x2[3]),func.calculate(x2[4]),func.calculate(x2[5]),func.calculate(x2[6]),func.calculate(x2[7]),func.calculate(x2[8])};
+            fifth.setText(Double.toString(inter.polinomValue(x2.length-1,x2,inter.computeCoef(x2.length-1,x2,y2),Double.parseDouble(input.getText()))));
+        }catch(NumberFormatException e){
+            first.setText("Только числа");
+            second.setText("Только числа");
+            third.setText("Только числа");
+            forth.setText("Только числа");
+            fifth.setText("Только числа");
+        }
     }
     @FXML
     public void drawGraphics(){
@@ -88,8 +116,13 @@ public class Controller {
         }else if(sqrt.isSelected()){
             drawSqrt();
         }else{
-            System.out.println("Выберете функцию");
+            first.setText("Выберите функцию");
+            second.setText("Выберите функцию");
+            third.setText("Выберите функцию");
+            forth.setText("Выберите функцию");
+            fifth.setText("Выберите функцию");
         }
+        draw();
     }
     public void draw(){
         chart.getData().clear();

@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1038.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <LineChart fx:id="chart" animated="false" legendVisible="false" prefHeight="400.0" prefWidth="731.0">
+      <LineChart fx:id="chart" animated="false" legendVisible="false" prefHeight="400.0" prefWidth="766.0">
         <xAxis>
            <NumberAxis side="BOTTOM" fx:id="xAxis" />
         </xAxis>
@@ -41,13 +41,13 @@
             <HBox prefHeight="135.0" prefWidth="154.0">
                <children>
                   <Button id="Check" fx:id="check" mnemonicParsing="false" onAction="#doCheck" prefHeight="26.0" prefWidth="80.0" text="Check" />
-                  <VBox prefHeight="128.0" prefWidth="100.0">
+                  <VBox prefHeight="133.0" prefWidth="169.0">
                      <children>
-                        <Label fx:id="first" prefHeight="27.0" prefWidth="107.0" text="first" />
-                        <Label fx:id="second" prefHeight="27.0" prefWidth="107.0" text="second" />
-                        <Label fx:id="third" prefHeight="27.0" prefWidth="107.0" text="third" />
-                        <Label fx:id="forth" prefHeight="27.0" prefWidth="100.0" text="forth" />
-                        <Label fx:id="fifth" prefHeight="27.0" prefWidth="100.0" text="fifth" />
+                        <Label fx:id="first" prefHeight="26.0" prefWidth="168.0" text="first" />
+                        <Label fx:id="second" prefHeight="27.0" prefWidth="167.0" text="second" />
+                        <Label fx:id="third" prefHeight="27.0" prefWidth="179.0" text="third" />
+                        <Label fx:id="forth" prefHeight="27.0" prefWidth="177.0" text="forth" />
+                        <Label fx:id="fifth" prefHeight="27.0" prefWidth="168.0" text="fifth" />
                      </children>
                   </VBox>
                </children>
