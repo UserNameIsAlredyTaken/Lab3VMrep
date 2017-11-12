@@ -52,7 +52,7 @@
                   </VBox>
                </children>
             </HBox>
-            <CheckBox fx:id="graph1" mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0" text="Функция" />
+            <CheckBox fx:id="graph1" mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0" selected="true" text="Функция" />
             <CheckBox fx:id="graph2" mnemonicParsing="false" prefHeight="25.0" prefWidth="194.0" text="Интерполяция/5точек" />
             <CheckBox fx:id="graph3" mnemonicParsing="false" prefHeight="27.0" prefWidth="198.0" text="Интерполяция/10точек" />
             <CheckBox fx:id="graph4" mnemonicParsing="false" prefHeight="27.0" prefWidth="196.0" text="Сдвинутая точка" />

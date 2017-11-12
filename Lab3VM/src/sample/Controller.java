@@ -77,58 +77,69 @@ public class Controller {
             drawSqrt();
         }else{
             first.setText("Выберите функцию");
-            second.setText("Выберите функцию");
-            third.setText("Выберите функцию");
-            forth.setText("Выберите функцию");
-            fifth.setText("Выберите функцию");
+            second.setText("");
+            third.setText("");
+            forth.setText("");
+            fifth.setText("");
             return;
         }
         Interpolate inter = new Interpolate();
         try{
-            first.setText(Double.toString(func.calculate(Double.parseDouble(input.getText()))));
-            double[] x = {0,PI/2,PI,PI*3/2,PI*2};
-            double[] y = {func.calculate(x[0]),func.calculate(x[1]),func.calculate(x[2]),func.calculate(x[3]),func.calculate(x[4])};
-            second.setText(Double.toString(inter.polinomValue(x.length-1,x,inter.computeCoef(x.length-1,x,y),Double.parseDouble(input.getText()))));
-            double[] x1 = {0,PI/4,PI/2,PI*3/4,PI,PI*5/4,PI*3/2,PI*7/4,PI*2};
-            double[] y1 = {func.calculate(x1[0]),func.calculate(x1[1]),func.calculate(x1[2]),func.calculate(x1[3]),func.calculate(x1[4]),func.calculate(x1[5]),func.calculate(x1[6]),func.calculate(x1[7]),func.calculate(x1[8])};
-            third.setText(Double.toString(inter.polinomValue(x1.length-1,x1,inter.computeCoef(x1.length-1,x1,y1),Double.parseDouble(input.getText()))));
-            y1[3]=0;
-            forth.setText(Double.toString(inter.polinomValue(x1.length-1,x1,inter.computeCoef(x1.length-1,x1,y1),Double.parseDouble(input.getText()))));
-            double[] x2 = {0,PI/2,PI,PI*3/2,PI*2,PI*5/2,PI*3,PI*7/2,PI*4};
-            double[] y2 = {func.calculate(x2[0]),func.calculate(x2[1]),func.calculate(x2[2]),func.calculate(x2[3]),func.calculate(x2[4]),func.calculate(x2[5]),func.calculate(x2[6]),func.calculate(x2[7]),func.calculate(x2[8])};
-            fifth.setText(Double.toString(inter.polinomValue(x2.length-1,x2,inter.computeCoef(x2.length-1,x2,y2),Double.parseDouble(input.getText()))));
+            if(Double.isNaN(func.calculate(Double.parseDouble(input.getText())))){
+                first.setText("Не валидное значение");
+                second.setText("");
+                third.setText("");
+                forth.setText("");
+                fifth.setText("");
+            }else{
+                first.setText(Double.toString(func.calculate(Double.parseDouble(input.getText()))));
+                double[] x = {-2*PI, -PI, -PI/2, 0,PI/2,PI,PI*3/2,PI*2};
+                double[] y = {func.calculate(x[0]),func.calculate(x[1]),func.calculate(x[2]),func.calculate(x[3]),func.calculate(x[4]),func.calculate(x[5]),func.calculate(x[6]),func.calculate(x[7])};
+                second.setText(Double.toString(inter.polinomValue(x.length-1,x,inter.computeCoef(x.length-1,x,y),Double.parseDouble(input.getText()))));
+                double[] x1 = {0,PI/4,PI/2,PI*3/4,PI,PI*5/4,PI*3/2,PI*7/4,PI*2};
+                double[] y1 = {func.calculate(x1[0]),func.calculate(x1[1]),func.calculate(x1[2]),func.calculate(x1[3]),func.calculate(x1[4]),func.calculate(x1[5]),func.calculate(x1[6]),func.calculate(x1[7]),func.calculate(x1[8])};
+                third.setText(Double.toString(inter.polinomValue(x1.length-1,x1,inter.computeCoef(x1.length-1,x1,y1),Double.parseDouble(input.getText()))));
+                y1[3]=0;
+                forth.setText(Double.toString(inter.polinomValue(x1.length-1,x1,inter.computeCoef(x1.length-1,x1,y1),Double.parseDouble(input.getText()))));
+                double[] x2 = {0,PI/2,PI,PI*3/2,PI*2,PI*5/2,PI*3,PI*7/2,PI*4};
+                double[] y2 = {func.calculate(x2[0]),func.calculate(x2[1]),func.calculate(x2[2]),func.calculate(x2[3]),func.calculate(x2[4]),func.calculate(x2[5]),func.calculate(x2[6]),func.calculate(x2[7]),func.calculate(x2[8])};
+                fifth.setText(Double.toString(inter.polinomValue(x2.length-1,x2,inter.computeCoef(x2.length-1,x2,y2),Double.parseDouble(input.getText()))));
+            }
         }catch(NumberFormatException e){
             first.setText("Только числа");
-            second.setText("Только числа");
-            third.setText("Только числа");
-            forth.setText("Только числа");
-            fifth.setText("Только числа");
+            second.setText("");
+            third.setText("");
+            forth.setText("");
+            fifth.setText("");
         }
     }
     @FXML
     public void drawGraphics(){
         if(cos.isSelected()){
             drawCos();
+            draw();
         }else if(sqr.isSelected()){
             drawPow2();
+            draw();
         }else if(growingSin.isSelected()){
             drawGrowingSin();
+            draw();
         }else if(sqrt.isSelected()){
             drawSqrt();
+            draw();
         }else{
             first.setText("Выберите функцию");
-            second.setText("Выберите функцию");
-            third.setText("Выберите функцию");
-            forth.setText("Выберите функцию");
-            fifth.setText("Выберите функцию");
+            second.setText("");
+            third.setText("");
+            forth.setText("");
+            fifth.setText("");
         }
-        draw();
     }
     public void draw(){
         chart.getData().clear();
         XYChart.Series dots1 = new XYChart.Series();
         ObservableList<XYChart.Data> datasDots1 = FXCollections.observableArrayList();
-        for(double i=0;i<PI*9/2;i+=PI/2){
+        for(double i=-PI*2;i<PI*9/2;i+=PI/2){
             datasDots1.add(new XYChart.Data(i,func.calculate(i)));
         }
         dots1.setData(datasDots1);
@@ -145,10 +156,10 @@ public class Controller {
         if(graph2.isSelected()){
             XYChart.Series series2 = new XYChart.Series();
             ObservableList<XYChart.Data> datas2 = FXCollections.observableArrayList();
-            double[] x = {0,PI/2,PI,PI*3/2,PI*2};
-            double[] y = {func.calculate(x[0]),func.calculate(x[1]),func.calculate(x[2]),func.calculate(x[3]),func.calculate(x[4])};
+            double[] x = {-2*PI, -PI, -PI/2, 0,PI/2,PI,PI*3/2,PI*2};
+            double[] y = {func.calculate(x[0]),func.calculate(x[1]),func.calculate(x[2]),func.calculate(x[3]),func.calculate(x[4]),func.calculate(x[5]),func.calculate(x[6]),func.calculate(x[7])};
             Interpolate inter = new Interpolate();
-            for(double i=0; i<7; i+=0.1){
+            for(double i=-7; i<7; i+=0.1){
                 datas2.add(new XYChart.Data(i,inter.polinomValue(x.length-1,x,inter.computeCoef(x.length-1,x,y),i)));
             }
             series2.setData(datas2);
